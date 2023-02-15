@@ -41,27 +41,19 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('login') }}">ログイン</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('register') }}">新規登録</a>
-                                </li>
-                            @endif
                         @else
-                            <p class="text-nowrap text-white p-2 m-0">ようこそ、{{ Auth::user()->name }}さん!</p>
-                            <a class="text-white p-2" href="{{ route('logout') }}"
+                        <p class="text-nowrap text-white p-2 m-0">管理者</p>
+                            <a class="text-white p-2" href="{{ route('admin.logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                                
-                            
+                                </div>
+                            </li>
                         @endguest
                     </ul>
                 </div>
