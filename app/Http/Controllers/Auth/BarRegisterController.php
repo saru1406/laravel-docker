@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Models\Bar; 
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
+class BarRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/bar';
 
     /**
      * Create a new controller instance.
@@ -39,6 +39,11 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function showRegisterForm()
+    {
+        return view('bars.register');
     }
 
     /**
@@ -64,8 +69,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Bar::create([
             'name' => $data['name'],
+            'address' => $data['address'],
+            'telephone_number' => $data['telephone_number'],
+            'budget_min' => $data['budget_min'],
+            'budget_max' => $data['budget_max'],
+            'regular_holiday' => $data['regular_holiday'],
+            'business_hours' => $data['business_hours'],
+            'smoke_status' => $data['smoke_status'],
+            'service_charge' => $data['service_charge'],
+            'seat_status' => $data['seat_status'],
+            'genre_id' => $data['genre_id'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

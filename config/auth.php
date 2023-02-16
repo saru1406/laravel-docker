@@ -46,6 +46,11 @@ return [
             'provider' => 'admins',
         ],
 
+        'bar' => [
+            'driver' => 'session',
+            'provider' => 'bars',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -74,6 +79,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'bars' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Bar::class,
         ],
 
         'admins' => [
