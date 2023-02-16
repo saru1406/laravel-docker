@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/my_page', 'UserController@show')->name('my_page');
+Route::get('/my_page/edit', 'UserController@edit')->name('my_page.edit');
+Route::patch('/my_page', 'UserController@update')->name('my_page');
 
 // 管理者ログイン
 Route::prefix('admin')->group(function () {
