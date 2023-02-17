@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -25,7 +26,7 @@ class UserController extends Controller
     public function show()
     {
         $user =\Auth::user();
-        return view('users.show' ,compact('user'));
+        return view('public.users.show' ,compact('user'));
     }
 
     public function edit()

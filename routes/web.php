@@ -17,9 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/my_page', 'UserController@show')->name('my_page');
-Route::get('/my_page/edit', 'UserController@edit')->name('my_page.edit');
-Route::patch('/my_page', 'UserController@update')->name('my_page');
+Route::get('/my_page', 'Public\UserController@show')->name('my_page');
+Route::get('/my_page/edit', 'Public\UserController@edit')->name('my_page.edit');
+Route::patch('/my_page', 'Public\UserController@update')->name('my_page');
+
+Route::prefix('public')->group(function () {
+    Route::resource('/bars',Public\BarController::class, ['only'=>['index','show']]);
+});
 
 // 管理者ログイン
 Route::prefix('admin')->group(function () {
