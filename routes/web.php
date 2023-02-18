@@ -23,6 +23,7 @@ Route::patch('/my_page', 'Public\UserController@update')->name('my_page');
 
 Route::prefix('public')->group(function () {
     Route::resource('/bars',Public\BarController::class, ['only'=>['index','show']]);
+    Route::resource('/reviews',public\ReviewController::class, ['only'=>['show','store','edit','update','delete']]);
 });
 
 // 管理者ログイン
