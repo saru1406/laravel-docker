@@ -19,7 +19,7 @@ class BarController extends Controller
     public function show(int $id)
     {
         $bar = Bar::find($id);
-        $reviews = Review::all();
+        $reviews = $bar->reviews;
 
         return view('public.bars.show', compact('bar','reviews'));
     }

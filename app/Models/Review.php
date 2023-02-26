@@ -10,4 +10,14 @@ class Review extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function bar()
+    {
+        return $this->belongsTo('App\Models\Bar');
+    }
+
+    public function review_comments()
+    {
+        return $this->hasMany('App\Models\ReviewComment');
+    }
 }

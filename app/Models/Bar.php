@@ -27,4 +27,9 @@ class Bar extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\ReviewComment;
 
 class ReviewController extends Controller
 {
@@ -22,8 +23,12 @@ class ReviewController extends Controller
         return redirect()->route('bars.index');
     }
 
-    public function show ()
+    public function show (int $id)
     {
-        return view('public.reviews.show');
+        $user = \Auth::user();
+        $review = Review::find($id);
+        $review_comments = $review->review_comments;
+
+        return view('public.reviews.show',compact('review','review_comments'));
     }
 }
