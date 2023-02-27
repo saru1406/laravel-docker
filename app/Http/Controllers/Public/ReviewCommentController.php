@@ -21,4 +21,12 @@ class ReviewCommentController extends Controller
 
         return back();
     }
+
+    public function destroy(int $id)
+    {
+        $review_comment = ReviewComment::find($id);
+        $review_comment->delete();
+
+        return back();
+    }
 }

@@ -51,17 +51,16 @@
                             @endif
                         @else
                             <p class="text-nowrap text-white p-2 m-0">ようこそ、{{ Auth::user()->name }}さん!</p>
+                            <a href="{{ route('bars.index') }}" class="p-2">居酒屋一覧</a>
+                            <a href="{{ route('my_page') }}" class="p-2">マイページ</a>
                             <a class="text-white p-2" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                                
-                            
                         @endguest
                     </ul>
                 </div>

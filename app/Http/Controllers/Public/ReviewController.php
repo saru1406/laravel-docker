@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\ReviewComment;
+use App\Models\Bar;
 
 class ReviewController extends Controller
 {
@@ -26,9 +27,10 @@ class ReviewController extends Controller
     public function show (int $id)
     {
         $user = \Auth::user();
+        $bars = Bar::all();
         $review = Review::find($id);
         $review_comments = $review->review_comments;
 
-        return view('public.reviews.show',compact('review','review_comments'));
+        return view('public.reviews.show',compact('review','review_comments','bars'));
     }
 }

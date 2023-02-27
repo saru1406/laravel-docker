@@ -56,7 +56,7 @@
                 @csrf
                 <input type="hidden" name="bar_id" value="{{$bar->id}}">
                 <textarea name="title" class="form-control w-50 mb-3" rows="1"></textarea>
-                <textarea name="body" class="form-control w-50" rows="5"></textarea>
+                <textarea name="body" class="form-control w-50 mb-2" rows="5"></textarea>
                 <button type="submit" class="btn btn-success">投稿する</button>
             </form>
         </div>

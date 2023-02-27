@@ -9,11 +9,22 @@ use App\Models\Review;
 
 class BarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $bars = Bar::all();
+        $bar_all =Bar::all();
 
-        return view('public.bars.index' ,compact('bars'));
+        // 検索機能
+        $smoke_status = $request->input('smoke_status');
+        $seat_status = $request->input('seat_status');
+        $query = Bar::query();
+        if (!empty($smoke_status)) {
+            $query->where('smoke_status', 'LIKE', "%{$smoke_status}%")
+            ->orwhere('seat_status', 'LIKE', "%{$seat_status}%");
+        }
+        
+        $bars = $query->get();
+        
+        return view('public.bars.index' ,compact('bars','bar_all'));
     }
 
     public function show(int $id)
