@@ -6,12 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bar;
 use App\Models\Review;
+use App\Repositories\Bar\BarRepository;
 
 class BarController extends Controller
 {
+    protected $barRepository;
+
+    public function __construct(BarRepository $barRepository)
+    {
+        $this->barRepository = $barRepository;
+    }
+
     public function index(Request $request)
     {
-        $bar_all =Bar::all();
+        $bar_all = $this->barRepository->all();
 
         // 検索機能
         $smoke_status = $request->input('smoke_status');
@@ -21,7 +29,6 @@ class BarController extends Controller
             $query->where('smoke_status', 'LIKE', "%{$smoke_status}%")
             ->orwhere('seat_status', 'LIKE', "%{$seat_status}%");
         }
-        
         $bars = $query->get();
         
         return view('public.bars.index' ,compact('bars','bar_all'));
@@ -29,7 +36,7 @@ class BarController extends Controller
 
     public function show(int $id)
     {
-        $bar = Bar::find($id);
+        $bar = $this->barRepository->find($id);
         $reviews = $bar->reviews;
 
         return view('public.bars.show', compact('bar','reviews'));

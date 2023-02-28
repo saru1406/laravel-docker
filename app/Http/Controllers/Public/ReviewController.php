@@ -7,13 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\ReviewComment;
 use App\Models\Bar;
+use App\Repositories\User\UserRepository;
 
 class ReviewController extends Controller
 {
+    protected $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function store (Request $request)
     {
-        $user = \Auth::user();
-
+        $user = $this->userRepository->find();
+        
         $review = new Review;
         $review->bar_id = $request->input('bar_id');
         $review->user_id = $user->id;
@@ -26,7 +34,6 @@ class ReviewController extends Controller
 
     public function show (int $id)
     {
-        $user = \Auth::user();
         $bars = Bar::all();
         $review = Review::find($id);
         $review_comments = $review->review_comments;
